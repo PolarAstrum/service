@@ -1,3 +1,4 @@
+import io.izzel.taboolib.gradle.App
 import io.izzel.taboolib.gradle.Basic
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -24,7 +25,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.apache.commons:commons-lang3:3.5")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }

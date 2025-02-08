@@ -1,6 +1,6 @@
 package cc.polarastrum.service.taboolib.platform
 
-import org.apache.commons.lang3.time.DateFormatUtils
+import net.mamoe.mirai.console.MiraiConsole
 import taboolib.common.Inject
 import taboolib.common.env.RuntimeDependency
 import taboolib.common.io.newFile
@@ -21,10 +21,7 @@ import java.io.File
 @Inject
 @PlatformSide(Platform.APPLICATION)
 @RuntimeDependency(value = "!org.apache.commons:commons-lang3:3.5", test = "!org.apache.commons.lang3.concurrent.BasicThreadFactory")
-class AppIO : PlatformIO {
-
-    val date: String
-        get() = DateFormatUtils.format(System.currentTimeMillis(), "HH:mm:ss")
+class MiraiIO : PlatformIO {
 
     val isLog4jEnabled by lazy {
         try {
@@ -35,9 +32,22 @@ class AppIO : PlatformIO {
         }
     }
 
-    override var pluginId = AppIO.pluginId
+    val plugin: MiraiPlugin
+        get() = MiraiPlugin.instance
 
-    override var pluginVersion = AppIO.pluginVersion
+    override val pluginId: String
+        get() = try {
+            plugin.description.name
+        } catch (ex: Throwable) {
+            "application"
+        }
+
+    override val pluginVersion: String
+        get() = try {
+            plugin.description.version.toString()
+        } catch (ex: Throwable) {
+            "application"
+        }
 
     override val isPrimaryThread: Boolean
         get() = true
@@ -51,7 +61,7 @@ class AppIO : PlatformIO {
             if (isLog4jEnabled) {
                 println(it)
             } else {
-                println("[${date}][INFO][$pluginId]  $it")
+                MiraiConsole.mainLogger.info("[$pluginId] $it")
             }
         }
     }
@@ -61,7 +71,7 @@ class AppIO : PlatformIO {
             if (isLog4jEnabled) {
                 println(it)
             } else {
-                println("[${date}][ERROR][$pluginId] $it")
+                MiraiConsole.mainLogger.error("[$pluginId] $it")
             }
         }
     }
@@ -71,7 +81,7 @@ class AppIO : PlatformIO {
             if (isLog4jEnabled) {
                 println(it)
             } else {
-                println("[${date}][WARN][$pluginId] $it")
+                MiraiConsole.mainLogger.warning("[$pluginId] $it")
             }
         }
     }
@@ -86,23 +96,14 @@ class AppIO : PlatformIO {
     }
 
     override fun getJarFile(): File {
-        return File(AppIO::class.java.protectionDomain.codeSource.location.toURI().path)
+        return File(MiraiIO::class.java.protectionDomain.codeSource.location.toURI().path)
     }
 
     override fun getDataFolder(): File {
-        return nativeDataFolder ?: File(getJarFile().parent)
+        return plugin.configFolder
     }
 
     override fun getPlatformData(): Map<String, Any> {
         return emptyMap()
-    }
-
-    companion object {
-
-        internal var pluginId: String = "application"
-
-        internal var pluginVersion: String = "application"
-
-        var nativeDataFolder: File? = null
     }
 }

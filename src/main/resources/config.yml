@@ -1,0 +1,13 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+Settings:
+  # 数据库
+  database:
+    host: localhost
+    port: 3306
+    user: minecraft
+    password: password
+    database: minecraft

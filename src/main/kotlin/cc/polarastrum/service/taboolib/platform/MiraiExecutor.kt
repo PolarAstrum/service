@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 @Awake
 @Inject
 @PlatformSide(Platform.APPLICATION)
-class AppExecutor : PlatformExecutor {
+class MiraiExecutor : PlatformExecutor {
 
     private val tasks = ArrayList<PlatformExecutor.PlatformRunnable>()
     private val executor = Executors.newScheduledThreadPool(16)
