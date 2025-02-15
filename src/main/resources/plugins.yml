@@ -1,0 +1,12 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+Chesed:
+  name: Chesed
+  price: 99
+  wiki-url: "https://wiki.polarastrum.cc/plugin/chesed"
+  inject: true
+  inject-class: "cc/polarastrum/chesed/Chesed"
+  inject-field: "userId"

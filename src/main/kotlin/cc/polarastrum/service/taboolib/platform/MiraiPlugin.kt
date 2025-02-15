@@ -11,7 +11,6 @@ import taboolib.common.platform.Plugin
 import taboolib.common.platform.function.submit
 import taboolib.common.util.t
 
-
 /**
  * ExamplePlugin
  * cc.polarastrum.service.taboolib.platform.PolarAstrumService
@@ -19,7 +18,7 @@ import taboolib.common.util.t
  * @author mical
  * @since 2025/2/7 23:52
  */
-class MiraiPlugin : KotlinPlugin(JvmPluginDescription.loadFromResource()) {
+class MiraiPlugin : KotlinPlugin(JvmPluginDescription.loadFromResource("plugin.yml")) {
 
     companion object {
 

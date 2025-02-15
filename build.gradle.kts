@@ -1,5 +1,7 @@
 import io.izzel.taboolib.gradle.App
 import io.izzel.taboolib.gradle.Basic
+import io.izzel.taboolib.gradle.CommandHelper
+import io.izzel.taboolib.gradle.Database
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -12,7 +14,7 @@ plugins {
 taboolib {
     env {
         // 安装模块
-        install(Basic)
+        install(Basic, Database, CommandHelper)
     }
     version {
         taboolib = "6.2.2"
@@ -25,6 +27,9 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.ow2.asm:asm:9.6")
+    compileOnly("org.ow2.asm:asm-util:9.6")
+    compileOnly("org.ow2.asm:asm-commons:9.6")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }
