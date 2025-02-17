@@ -4,6 +4,7 @@ import cc.polarastrum.service.ConfigReader
 import cc.polarastrum.service.taboolib.platform.MiraiCommand
 import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.console.command.CommandSender
+import net.mamoe.mirai.console.command.getGroupOrNull
 import taboolib.common.platform.ProxyCommandSender
 
 /**
@@ -19,7 +20,7 @@ class MiraiCommandSender(val sender: CommandSender) : ProxyCommandSender {
         get() = sender
 
     override val name: String
-        get() = sender.name
+        get() = sender.user?.id?.toString() ?: sender.getGroupOrNull()?.id?.toString() ?: sender.name
 
     override var isOp: Boolean
         get() = sender.user?.id in ConfigReader.admin // FIXME: StarrySky implementation

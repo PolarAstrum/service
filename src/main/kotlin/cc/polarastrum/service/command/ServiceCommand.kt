@@ -1,5 +1,7 @@
 package cc.polarastrum.service.command
 
+import cc.polarastrum.service.command.subcommand.mySubCommand
+import cc.polarastrum.service.command.subcommand.permSubCommand
 import cc.polarastrum.service.command.subcommand.pluginsSubCommand
 import cc.polarastrum.service.command.subcommand.reloadSubCommand
 import taboolib.common.platform.command.CommandBody
@@ -20,6 +22,12 @@ object ServiceCommand {
     val main = mainCommand {
         createTabooLegacyHelper()
     }
+
+    @CommandBody
+    val my = mySubCommand
+
+    @CommandBody(permission = "admin")
+    val perm = permSubCommand
 
     @CommandBody
     val plugins = pluginsSubCommand

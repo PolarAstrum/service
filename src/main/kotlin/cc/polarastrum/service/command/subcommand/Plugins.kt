@@ -19,7 +19,7 @@ val pluginsSubCommand = subCommand {
             if (plugin == null) {
                 sender.sendMessage("""
                     ---== 极沫星舱 ==---
-                    发的什么玩意，找不到你要的插件
+                    不存在名为 ${ctx["plugin"]} 的插件
                 """.trimIndent())
                 return@execute
             }

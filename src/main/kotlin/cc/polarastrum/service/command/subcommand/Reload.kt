@@ -15,12 +15,13 @@ import taboolib.module.lang.Language
  */
 val reloadSubCommand = subCommand {
     execute<ProxyCommandSender> { sender, _, _ ->
+        val time = System.currentTimeMillis()
         ConfigReader.config.reload()
         PluginDataLoader.reload()
         Language.reload()
         sender.sendMessage("""
             ---== 极沫星舱 ==---
-            行了行了行了
+            插件已重载，耗时 ${System.currentTimeMillis() - time} ms
         """.trimIndent())
     }
 }

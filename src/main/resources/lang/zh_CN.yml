@@ -23,10 +23,16 @@ command-argument-unknown:
   - '---== 极沫星舱 ==---'
   - '指令 {name} 不存在'
   - '你可能想要:'
-  - '{similar}'
+  - '/lab {similar} {usage}- {description}'
 command-incorrect-sender: '指令 {name} 只能由 玩家 执行'
 
-command-subCommands-plugins-description: '查询在售插件或指定在售插件信息'
+command-subCommands-my-description: '查询你拥有的插件'
+command-subCommands-my-usage: ''
+
+command-subCommands-perm-description: '操作用户授权'
+command-subCommands-perm-usage: '[操作] [用户] <插件名>'
+
+command-subCommands-plugins-description: '查询在售全部或指定插件信息'
 command-subCommands-plugins-usage: '<插件名>'
 
 command-subCommands-reload-description: '重载插件'
