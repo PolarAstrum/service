@@ -1,10 +1,10 @@
 package cc.polarastrum.service.command
 
 import cc.polarastrum.service.command.subcommand.pluginsSubCommand
+import cc.polarastrum.service.command.subcommand.reloadSubCommand
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
-import taboolib.expansion.createHelper
 
 /**
  * PolarAstrumService
@@ -18,9 +18,12 @@ object ServiceCommand {
 
     @CommandBody
     val main = mainCommand {
-        createHelper()
+        createTabooLegacyHelper()
     }
 
     @CommandBody
     val plugins = pluginsSubCommand
+
+    @CommandBody(permission = "admin")
+    val reload = reloadSubCommand
 }

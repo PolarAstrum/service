@@ -1,0 +1,35 @@
+command-helper:
+  - ' '
+  - '  service {pluginVersion}'
+  - ' '
+  - '  命令: /lab [...]'
+  - '  参数:'
+  - '{subCommands}'
+  - ' '
+command-sub:
+  - '    - {name}'
+  - '      {description}'
+command-argument-missing:
+  - '---== 极沫星舱 ==---'
+  - '指令 {name} 参数不足'
+  - '正确用法:'
+  - '/lab {name} {usage}- {description}'
+command-argument-wrong:
+  - '---== 极沫星舱 ==---'
+  - '指令 {name} 参数有误'
+  - '正确用法:'
+  - '/lab {name} {usage}- {description}'
+command-argument-unknown:
+  - '---== 极沫星舱 ==---'
+  - '指令 {name} 不存在'
+  - '你可能想要:'
+  - '{similar}'
+command-incorrect-sender: '指令 {name} 只能由 玩家 执行'
+
+command-subCommands-plugins-description: '查询在售插件或指定在售插件信息'
+command-subCommands-plugins-usage: '<插件名>'
+
+command-subCommands-reload-description: '重载插件'
+command-subCommands-reload-usage: ''
+
+command-no-desc: '没有描述'

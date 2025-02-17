@@ -60,7 +60,7 @@ object PluginDataLoader {
         registered.clear()
         for (section in config.getKeys(false).map { config.getConfigurationSection(it)!! }) {
             val data = PluginData(section)
-            registered += data.name to data
+            registered += data.name.lowercase() to data
         }
         info("Loaded ${registered.size} plugins in ${System.currentTimeMillis() - time} ms")
     }

@@ -36,6 +36,7 @@ class MiraiCommand : PlatformCommand {
     companion object {
 
         var commandPrefix: String = "/"
+        var enableUnknownCommandMessage: Boolean = false
 
         val unknownCommandMessage: String
             get() = System.getProperty("taboolib.application.command.unknown.message") ?: "Unknown command."
@@ -61,7 +62,13 @@ class MiraiCommand : PlatformCommand {
             }
             val content = cmd.removePrefix(commandPrefix)
             val label = if (content.contains(" ")) content.substringBefore(" ") else content
-            val command = commands.find { it.aliases.contains(label) } ?: return sender.sendMessage(unknownCommandMessage)
+            val command = commands.find { it.aliases.contains(label) }
+            if (command == null) {
+                if (enableUnknownCommandMessage) {
+                    sender.sendMessage(unknownCommandMessage)
+                }
+                return
+            }
             val args = if (content.contains(" ")) content.substringAfter(" ").split(" ") else listOf()
             command.executor.execute(sender, command.command, label, args.toTypedArray())
         }

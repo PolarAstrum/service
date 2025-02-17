@@ -1,5 +1,6 @@
 package cc.polarastrum.service.taboolib.platform.type
 
+import cc.polarastrum.service.ConfigReader
 import cc.polarastrum.service.taboolib.platform.MiraiCommand
 import kotlinx.coroutines.runBlocking
 import net.mamoe.mirai.console.command.CommandSender
@@ -21,7 +22,7 @@ class MiraiCommandSender(val sender: CommandSender) : ProxyCommandSender {
         get() = sender.name
 
     override var isOp: Boolean
-        get() = true
+        get() = sender.user?.id in ConfigReader.admin // FIXME: StarrySky implementation
         set(value) {}
 
     override fun isOnline(): Boolean {
@@ -44,7 +45,10 @@ class MiraiCommandSender(val sender: CommandSender) : ProxyCommandSender {
     }
 
     override fun hasPermission(permission: String): Boolean {
-        return true
+        // FIXME: StarrySky implementation
+        return permission != "admin" || sender.user?.id in ConfigReader.admin
+//        val (namespace, perm) = permission.split(":")
+//        return sender.hasPermission(PermissionId(namespace, perm))
     }
 
     fun stripColor(message: String): String {

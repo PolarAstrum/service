@@ -1,7 +1,4 @@
-import io.izzel.taboolib.gradle.App
-import io.izzel.taboolib.gradle.Basic
-import io.izzel.taboolib.gradle.CommandHelper
-import io.izzel.taboolib.gradle.Database
+import io.izzel.taboolib.gradle.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -14,7 +11,7 @@ plugins {
 taboolib {
     env {
         // 安装模块
-        install(Basic, Database, CommandHelper)
+        install(Basic, Database, I18n)
     }
     version {
         taboolib = "6.2.2"

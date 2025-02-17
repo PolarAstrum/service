@@ -11,3 +11,7 @@ Settings:
     user: minecraft
     password: password
     database: minecraft
+  admin:
+    - 1747484670
+    - 3332366064
+    - 3186320035

@@ -12,7 +12,10 @@ import taboolib.module.configuration.Configuration
  */
 object ConfigReader {
 
-    @Config
+    @Config(autoReload = true)
     lateinit var config: Configuration
         private set
+
+    val admin: List<Long>
+        get() = config.getLongList("Settings.admin")
 }

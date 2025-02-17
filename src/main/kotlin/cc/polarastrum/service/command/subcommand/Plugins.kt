@@ -15,7 +15,14 @@ import taboolib.common.platform.command.subCommand
 val pluginsSubCommand = subCommand {
     dynamic("plugin", optional = true) {
         execute<ProxyCommandSender> { sender, ctx, _ ->
-            val plugin = PluginDataLoader.registered[ctx["plugin"]] ?: return@execute sender.sendMessage("插件不存在")
+            val plugin = PluginDataLoader.registered[ctx["plugin"].lowercase()]
+            if (plugin == null) {
+                sender.sendMessage("""
+                    ---== 极沫星舱 ==---
+                    发的什么玩意，找不到你要的插件
+                """.trimIndent())
+                return@execute
+            }
             sender.sendMessage("""
                 ---== 极沫星舱 ==---
                 插件 ${plugin.name}:
